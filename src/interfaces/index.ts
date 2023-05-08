@@ -1,0 +1,1 @@
+export type { IBookingData } from "./interfaces"
