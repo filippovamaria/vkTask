@@ -1,7 +1,4 @@
-import {
-    Box,
-    Button
-} from '@mui/material'
+import { Box, Button} from '@mui/material'
 import React, { useState } from 'react'
 import {
     BookingDatePicker,
@@ -12,6 +9,15 @@ import {
     TowerSelect,
 } from './controls'
 import { IBookingData } from '../interfaces'
+
+const style = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+    padding: '20px',
+    maxWidth: 300,
+    m: "0 auto"
+}
 
 export const FormForBookingMeetingRoom: React.FC = () => {
     const [bookingData, setBookingData] = useState<IBookingData>({
@@ -25,7 +31,7 @@ export const FormForBookingMeetingRoom: React.FC = () => {
     })
 
     const handleChangeForSendButton = () => {
-        console.log(bookingData)
+        console.log(JSON.stringify(bookingData))
     }
 
     const handleChangeForCleanButton = () => {
@@ -41,16 +47,7 @@ export const FormForBookingMeetingRoom: React.FC = () => {
     }
 
     return (
-        <Box
-            component="form"
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '10px',
-                padding: '20px',
-                maxWidth: 300,
-            }}
-        >
+        <Box component="form" sx={style}>
             <TowerSelect
                 tower={bookingData.tower}
                 setBookingData={setBookingData}

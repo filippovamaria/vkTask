@@ -18,6 +18,13 @@ import React from 'react'
 import { IBookingData } from '../../interfaces'
 import { TooltipWrapper } from '../core'
 
+const style = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+    maxWidth: 300,
+}
+
 export const TimeSelect: React.FC<{
     bookingData: IBookingData
     setBookingData: React.Dispatch<React.SetStateAction<IBookingData>>
@@ -28,13 +35,17 @@ export const TimeSelect: React.FC<{
                 new Date().getDay() === bookingData.bookingDate.getDay()
                     ? eachHourOfInterval({
                           start: startDate ? startDate : new Date(),
-                          end: endOfDay(bookingData.bookingDate),
+                          end: endOfDay(
+                              startDate ? startDate : bookingData.bookingDate
+                          ),
                       })
                     : eachHourOfInterval({
                           start: startDate
                               ? startDate
                               : startOfDay(bookingData.bookingDate),
-                          end: endOfDay(bookingData.bookingDate),
+                          end: endOfDay(
+                              startDate ? startDate : bookingData.bookingDate
+                          ),
                       })
             return arr
         }
@@ -72,24 +83,16 @@ export const TimeSelect: React.FC<{
     }
 
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '10px',
-                maxWidth: 300,
-            }}
-        >
+        <Box sx={style}>
             <TooltipWrapper
                 isActive={!bookingData.bookingDate}
                 text="Сначала выберите дату"
             >
-                <FormControl>
+                <FormControl disabled={!bookingData.bookingDate}>
                     <InputLabel id="startSelect">
                         Выберите время начала
                     </InputLabel>
                     <Select
-                        disabled={!bookingData.bookingDate}
                         labelId="startSelect"
                         id="startSelect"
                         value={bookingData.bookingTimeStart}
@@ -105,12 +108,11 @@ export const TimeSelect: React.FC<{
                 isActive={!bookingData.bookingTimeStart}
                 text="Сначала выберите время начала"
             >
-                <FormControl>
+                <FormControl disabled={!bookingData.bookingTimeStart}>
                     <InputLabel id="endSelect">
                         Выберите время окончания
                     </InputLabel>
                     <Select
-                        disabled={!bookingData.bookingTimeStart}
                         labelId="endSelect"
                         id="endSelect"
                         value={bookingData.bookingTimeEnd}

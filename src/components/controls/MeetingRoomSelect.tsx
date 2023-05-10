@@ -25,12 +25,11 @@ export const MeetingRoomSelect: React.FC<{
             isActive={!prevControlData}
             text="Сначала выберите этаж"
         >
-            <FormControl>
+            <FormControl disabled={!prevControlData}>
                 <InputLabel id="meetingRoomSelect">
                     Выберите переговорную
                 </InputLabel>
                 <Select
-                    disabled={!prevControlData}
                     labelId="meetingRoomSelect"
                     id="meetingRoomSelect"
                     value={meetingRoomNumber}

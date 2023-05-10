@@ -9,4 +9,4 @@ export interface IBookingData {
     comment: string
 }
 
-export default IBookingData
+

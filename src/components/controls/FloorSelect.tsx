@@ -25,10 +25,9 @@ export const FloorSelect: React.FC<{
             isActive={!prevControlData}
             text="Сначала выберите башню"
         >
-            <FormControl>
+            <FormControl  disabled={!prevControlData}>
                 <InputLabel id="floorSelect">Выберите этаж</InputLabel>
                 <Select
-                    disabled={!prevControlData}
                     labelId="floorSelect"
                     id="floorSelect"
                     value={floor}
